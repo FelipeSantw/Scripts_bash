@@ -44,26 +44,29 @@ fi
 
 # Descompacta e instala o OSSEC
 sudo tar -zxf /opt/3.7.0.tar.gz --directory /opt
-sudo sh /opt/ossec-hids-3.7.0/install.sh
+cd /opt/ossec-hids-3.7.0
 
-# entradas para instalação do OSSEC;
-??
+# Instalação com expect
+sudo ./install.sh << EOF
+\n
+\n
+agent
+\n
+10.100.61.10
+\n
+\n
+n
+\n
+\n
+$key_ossim
+EOF
 
 # Cria a pasta e aplica permissões
 sudo touch /var/ossec/queue/rids/sender
 sudo chown -R ossec:ossec /var/ossec
 
-# Entra no diretório e executa o script 'manage_agents'
-cd /var/ossec/bin
-./manage_agents << EOF
-i
-$key_ossim
-y
-q
-EOF
-
 # Reinicia o OSSEC
-sudo ./ossec-control restart
+sudo /var/ossec/bin/ossec-control restart
 
 # Verifica o log
 tail -f /var/ossec/logs/ossec.log
