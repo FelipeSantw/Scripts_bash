@@ -1,4 +1,6 @@
--- instalação Agent Ossim / Alien Vault Ossec, linux;
+## instalação Agent Ossim / Alien Vault Ossec, linux.
+## comando para executar: rm -f ./instala.sh && wget http://xxx.xxx.xxx.xxx:8000/instala.sh && sh ./instala.sh
+
 #!/bin/bash
 executaAPT() {
     
@@ -25,7 +27,7 @@ executaAPT() {
 }
 
 executaRSYNC() {
-    rsync -auvrzth 192.168.151.48::ossec /opt/ossec-hids-3.7.0
+    rsync -auvrzth xxx.xxx.xxx.xxx::ossec /opt/ossec-hids-3.7.0
 }
 
 executaINTALLOSSEC() {
